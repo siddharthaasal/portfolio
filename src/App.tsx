@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div className='flex m-auto mt-24 justify-center'>
+      <div className='flex m-auto mt-24 justify-center '>
         <PortfolioCard />
       </div>
     </>
