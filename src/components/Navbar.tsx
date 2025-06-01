@@ -11,7 +11,7 @@ const navItems = [
 export default function NavbarDemo() {
     return (
         <div className="fixed top-6 left-0 w-full flex items-center justify-center z-50">
-            <ul className="md:flex hidden items-center justify-center gap-1 rounded-full border border-white/20 bg-transparent px-2 py-1 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-md backdrop-saturate-150">
+            <ul className="outfit-font md:flex hidden items-center justify-center gap-1 px-2 py-1 rounded-full border border-white/15 bg-gray-200/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.25)] backdrop-blur-[10px] backdrop-saturate-[180%]">
                 {navItems.map((item, idx) => (
                     <li key={idx} className="relative">
                         <a

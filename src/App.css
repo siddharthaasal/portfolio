@@ -8,6 +8,13 @@
     font-style: bold;
 }
 
+.outfit-bold {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: bold;
+}
+
 .outfit-font {
     font-family: "Outfit", sans-serif;
     font-optical-sizing: auto;
@@ -20,24 +27,4 @@
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: italic;
-}
-
-@keyframes scroll-vertical {
-    0% {
-        transform: translateY(0%);
-    }
-
-    100% {
-        transform: translateY(-50%);
-    }
-}
-
-.animate-scroll-vertical {
-    animation-name: scroll-vertical;
-    animation-duration: 20s;
-    /* adjust speed */
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    /* goes up then down */
 }
