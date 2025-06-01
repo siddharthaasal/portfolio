@@ -1,72 +1,102 @@
+import { SparklesCore } from "./ui/sparkles";
+import { Connect } from "./Connect";
+import NavbarDemo from "./Navbar";
 
-import { useState } from "react";
-import About from "./About";
-import Projects from "./Projects";
-import Settings from "./Settings";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
-import DownloadIcon from '@mui/icons-material/Download';
+import { useState, useEffect } from "react";
 
+export function Home() {
 
-const tabs = [
-    { name: "About", component: <About /> },
-    { name: "Projects", component: <Projects /> },
-    { name: "Settings", component: <Settings /> },
-];
+    const [copied, setCopied] = useState(false);
 
-export default function Page() {
-    const [activeTab, setActiveTab] = useState(tabs[0]);
+    const handleCopy = () => {
+        navigator.clipboard.writeText("siddharthaasal@gmail.com");
+        setCopied(true);
+    };
+
+    useEffect(() => {
+        if (copied) {
+            const timeout = setTimeout(() => setCopied(false), 5000);
+            return () => clearTimeout(timeout);
+        }
+    }, [copied]);
+
 
     return (
-        <div className="relative flex items-center justify-center  ">
-            {/* Fixed Size Container */}
-            <div className="w-[900px] h-[500px] rounded-2xl overflow-hidden bg-white border border-black  transition-all duration-700 flex flex-col">
 
-                {/* Top Bar */}
-                <div className="bg-muted p-3 flex flex-col items-start gap-2 border-b border-border">
-                    {/* Window Dots */}
-                    <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                        <div className="w-3 h-3 rounded-full bg-green-500" />
-                    </div>
+        <div className="relative h-screen w-full antialiased selection:bg-purple-600/20 selection:text-purple-400 overflow-hidden flex items-center justify-center">
+            {/* Gradient Background: Black to deep purple */}
+            <div className="absolute top-0 z-[-2] h-full w-full bg-gradient-to-br from-black via-[#0f0b1e] to-[#1a0e2a]" />
 
-                    {/* Tab Buttons */}
-                    <div className="flex gap-3 ">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.name}
-                                onClick={() => setActiveTab(tab)}
-                                className={`cursor-pointer text-sm px-3 py-1 rounded-md transition ${activeTab.name === tab.name
-                                    ? "bg-slate-800 text-white"
-                                    : "text-muted-foreground hover:text-white"
-                                    }`}
-                            >
-                                {tab.name}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Scrollable Content Area */}
-                <div className="p-6 flex-1 overflow-auto">
-                    <div className="flex flex-col lg:flex-row gap-6 h-full">
-                        <div className="flex-1 z-50">{activeTab.component}</div>
-                    </div>
-                </div>
-
-                {/* resume */}
-                <div className="mt-4">
-                    <a
-                        href="/Resume_Siddharth_Aasal.pdf"
-                        download
-                        className="absolute bottom-4 right-4 inline-flex items-center gap-1 bg-slate-800 hover:bg-slate-700 text-white text-sm px-4 py-2 rounded-lg transition-colors shadow-lg"
-                    >
-                        Resume
-                        <DownloadIcon fontSize="small" />
-
-                    </a>
-                </div>
+            {/* Sparkles Layer */}
+            <div className="absolute inset-0 z-[-1] w-full h-full">
+                <SparklesCore
+                    id="tsparticlesfullpage"
+                    background="transparent"
+                    minSize={0.6}
+                    maxSize={1}
+                    particleDensity={4}
+                    className="w-full h-full"
+                    particleColor="#FFFFFF"
+                />
             </div>
-        </div >
+
+            {/* Content */}
+
+            <div>
+                <NavbarDemo />
+                <div className="w-full py-px text-center  relative z-20">
+                    <h1 className="md:text-7xl text-3xl lg:text-6xl font-extrabold text-white leading-snug outfit-font">
+                        Coding ideas into reality
+                    </h1>
+                    <p className="eb-garamond-font bg-gradient-to-b from-zinc-700 via-zinc-200 to-zinc-50 bg-clip-text font-light tracking-wide text-transparent md:text-5xl lg:text-6xl leading-snug">
+                        simple reliable creative
+                    </p>
+                </div>
+                <p className="mt-6 text-center text-lg outfit-font text-white/80">
+                    Hello, I'm Siddharth Aasal, a Full Stack & Blockchain Developer
+                </p>
+
+                <div className="animate-fadeInUp z-100 mt-4 flex flex-col items-center justify-center gap-6 sm:flex-row md:mt-8 md:gap-10">
+
+
+                    <Connect />
+
+                    <div
+                        onClick={handleCopy}
+                        className="relative flex items-center gap-2 py-3 text-base font-light text-white/75 cursor-pointer hover:text-white/90 select-none"
+                        title="Click to copy email"
+                    >
+
+                        {
+                            copied ?
+                                (
+                                    <>
+                                        <DoneAllIcon className="h-5 w-5" />
+                                        <p>Copied to Clipboard</p>
+                                    </>
+
+                                )
+                                :
+                                (
+                                    <>
+                                        <ContentCopyIcon className="h-5 w-5" />
+                                        <p>siddharthaasal@gmail.com</p>
+                                    </>
+
+                                )
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
     );
 }

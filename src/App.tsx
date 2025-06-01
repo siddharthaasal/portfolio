@@ -1,13 +1,13 @@
 import './App.css'
-import PortfolioCard from './components/Home'
+import { Home } from './components/Home'
+import Skills from './components/Skills'
 
 function App() {
 
   return (
     <>
-      <div className='flex m-auto mt-24 justify-center '>
-        <PortfolioCard />
-      </div>
+      <Home />
+      {/* <Skills /> */}
     </>
   )
 }
