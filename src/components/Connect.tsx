@@ -35,7 +35,7 @@ export function Connect() {
     return (
         <div className="flex items-center justify-center">
             <Modal>
-                <ModalTrigger className="bg-[#121212] border border-white cursor-pointer dark:text-black text-white flex justify-center group/modal-btn">
+                <ModalTrigger className="bg-[#121212] border border-white cursor-pointer dark:text-white text-white flex justify-center group/modal-btn">
                     <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500 outfit-font">
                         Let's Connect
                     </span>

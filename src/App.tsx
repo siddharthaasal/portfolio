@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-      {/* <Home />
+      <Home />
       <Skills />
-      <About /> */}
+      <About />
       <Projects />
     </>
   )
