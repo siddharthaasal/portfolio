@@ -8,19 +8,20 @@ import XIcon from '@mui/icons-material/X';
 
 export default function About() {
     return (
-        <div className="relative w-screen h-screen bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0f0f0f] text-white overflow-hidden">
+        <div className="relative w-full min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0f0f0f] text-white overflow-x-hidden">
             <NavbarDemo />
-            <div className="mx-auto max-w-6xl px-4 pt-28 pb-20 md:pt-36 md:pb-32">
+
+            <div className="mx-auto max-w-6xl px-4 pt-28 pb-44 md:pt-36 md:pb-52">
                 <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-start">
 
                     {/* Left: About Text */}
-                    <div className="flex-1 space-y-3 w-2/3 text-zinc-300 text-sm md:text-base leading-relaxed">
-                        <h2 className="text-xs tracking-widest text-purple-500 font-semibold uppercase mb-6">
+                    <div className="w-full md:w-2/3 text-zinc-300 text-sm md:text-base leading-relaxed space-y-4">
+                        <h2 className="text-xs tracking-widest text-purple-500 font-semibold uppercase mb-4">
                             More About Me
                         </h2>
+
                         <p>
                             Hey there! I’m <span className="text-purple-400 font-semibold">Siddharth Aasal</span>, a full stack and blockchain developer who’s obsessed with building things that are fast, clean, and just feel right.
-                            {/* Whether it’s crafting experimental UI or diving into distributed systems, I love working at the crossroads of good design and solid engineering. */}
                         </p>
                         <p>
                             I’ve built everything from interactive web apps to blockchain-based solutions. One of my proudest research projects involved designing a decentralized supply chain system for medical supplies — all about stopping counterfeits and boosting transparency.
@@ -31,38 +32,31 @@ export default function About() {
                         <p className="italic text-zinc-400 border-l-4 border-purple-600 pl-4 mt-6">
                             "I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in."
                         </p>
-                        <>
 
-                            <div className="flex my-6 justify-start gap-4">
-                                <a href="https://x.com/siddharthaasal" target="_blank" rel="noopener noreferrer" className="text-neutral-200 transition-colors hover:text-white">
-                                    <span className="sr-only">Twitter</span>
-                                    <XIcon />
-                                </a>
-                                <a href="https://github.com/siddharthaasal" target="_blank" rel="noopener noreferrer" className="text-neutral-200 transition-colors hover:text-white">
-                                    <span className="sr-only">GitHub</span>
-                                    <GitHubIcon />
-                                </a>
-                                <a href="https://www.linkedin.com/in/siddharthaasal/" target="_blank" rel="noopener noreferrer" className="text-neutral-200 transition-colors hover:text-white">
-                                    <span className="sr-only">LinkedIn</span>
-                                    <LinkedInIcon />
-                                </a>
-
-
-                            </div>
-
-                        </>
-
+                        <div className="flex mt-6 gap-4">
+                            <a href="https://x.com/siddharthaasal" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
+                                <span className="sr-only">Twitter</span>
+                                <XIcon />
+                            </a>
+                            <a href="https://github.com/siddharthaasal" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
+                                <span className="sr-only">GitHub</span>
+                                <GitHubIcon />
+                            </a>
+                            <a href="https://www.linkedin.com/in/siddharthaasal/" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
+                                <span className="sr-only">LinkedIn</span>
+                                <LinkedInIcon />
+                            </a>
+                        </div>
                     </div>
 
                     {/* Right: Card Stack */}
-                    <div className=" w-1/3 flex justify-center items-center mt-5">
-                        <div className="w-full max-w-md  flex items-center justify-center">
-                            <CardStack items={CARDS} />
-                        </div>
+                    <div>                        <div className="w-full max-w-md flex items-center justify-center">
+                        <CardStack items={CARDS} />
+                    </div>
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 
@@ -77,8 +71,8 @@ export const Highlight = ({
         <span
             className={cn(
                 "font-semibold px-1.5 py-0.5 rounded-sm",
-                "bg-purple-200 text-purple-800",                  // Light mode
-                "dark:bg-purple-600/20 dark:text-purple-400",      // Dark mode
+                "bg-purple-200 text-purple-800",
+                "dark:bg-purple-600/20 dark:text-purple-400",
                 className
             )}
         >
@@ -108,7 +102,6 @@ const CARDS = [
             </p>
         ),
     },
-
     {
         id: 2,
         name: "Tech Exploration",
