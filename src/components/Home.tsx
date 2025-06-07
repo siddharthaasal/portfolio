@@ -46,8 +46,11 @@ export function Home() {
 
             {/* Main Content */}
             <div className="flex-grow flex flex-col justify-center items-center w-full px-4 text-center z-20 mt-12 sm:mt-0">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold opacity-80 text-white leading-snug outfit-bold">
+                <h1 className="hidden sm:block text-3xl sm:text-5xl lg:text-6xl font-semibold opacity-80 text-white leading-snug outfit-bold">
                     programming ideas into reality
+                </h1>
+                <h1 className="sm:hidden text-3xl sm:text-5xl lg:text-6xl font-semibold opacity-80 text-white leading-snug outfit-bold">
+                    coding ideas into reality
                 </h1>
 
                 <p className="eb-garamond-font mt-4 opacity-90 bg-gradient-to-b from-zinc-700 via-zinc-200 to-zinc-50 bg-clip-text font-light tracking-wide text-transparent text-2xl sm:text-4xl lg:text-6xl leading-snug">

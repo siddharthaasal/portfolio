@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import React, {
-  ReactNode,
+  type ReactNode,
   createContext,
   useContext,
   useEffect,
@@ -77,7 +77,8 @@ export const ModalBody = ({
     }
   }, [open]);
 
-  const modalRef = useRef(null);
+  // const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const { setOpen } = useModal();
   useOutsideClick(modalRef, () => setOpen(false));
 
@@ -96,16 +97,17 @@ export const ModalBody = ({
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50"
+          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-50"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[90%] w-[90%] sm:w-[85%] md:w-[70%] lg:w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 rounded-xl relative z-50 flex flex-col overflow-hidden",
               className
             )}
+
             initial={{
               opacity: 0,
               scale: 0.5,
@@ -219,14 +221,37 @@ const CloseIcon = () => {
 
 // Hook to detect clicks outside of a component.
 // Add it in a separate file, I've added here for simplicity
+// export const useOutsideClick = (
+
+//   ref: React.RefObject<HTMLDivElement>,
+//   callback: Function
+// ) => {
+//   useEffect(() => {
+//     const listener = (event: any) => {
+//       // DO NOTHING if the element being clicked is the target element or their children
+//       if (!ref.current || ref.current.contains(event.target)) {
+//         return;
+//       }
+//       callback(event);
+//     };
+
+//     document.addEventListener("mousedown", listener);
+//     document.addEventListener("touchstart", listener);
+
+//     return () => {
+//       document.removeEventListener("mousedown", listener);
+//       document.removeEventListener("touchstart", listener);
+//     };
+//   }, [ref, callback]);
+// };
+
 export const useOutsideClick = (
-  ref: React.RefObject<HTMLDivElement>,
-  callback: Function
+  ref: React.RefObject<HTMLDivElement | null>,
+  callback: (event: MouseEvent | TouchEvent) => void
 ) => {
   useEffect(() => {
-    const listener = (event: any) => {
-      // DO NOTHING if the element being clicked is the target element or their children
-      if (!ref.current || ref.current.contains(event.target)) {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
         return;
       }
       callback(event);

@@ -10,16 +10,17 @@ export default function Projects() {
             description: "This project benchmarks probabilistic data structures like HyperLogLog (HLL) and Bloom Filters against brute-force methods for membership testing and cardinality estimation",
             descriptionCard: "Benchmarking PDS like HyperLogLog and Bloom Filters",
             link: "https://github.com/siddharthaasal/benchmarking-probabilistic-data-structures/",
+            linkName: "GitHub",
             gradient: "from-gray-800 via-blue-800 to-gray-900",
             // gradient: "from-slate-900 to-slate-700",
             // bg- linear - to - r 
             image: "/thumbnails/researchPaperT.png",
             features: [
 
-                "Brute - force method(PostgreSQL) → Exact results(but high memory usage)",
-                "HyperLogLog(Redis) → Approximate unique IP counting(low memory usage)",
-                "Bloom Filter(Redis) → Fast blocked IP detection(probabilistic false positives)",
-                "Performance comparison → Speed, accuracy, memory usage",
+                "Brute - force method(PostgreSQL) : Exact results (but high memory usage)",
+                "HyperLogLog(Redis) : Approximate unique IP counting (low memory usage)",
+                "Bloom Filter(Redis) : Fast blocked IP detection (probabilistic false positives)",
+                // "Performance comparison : Speed, accuracy, memory usage",
 
             ],
             techStack: [
@@ -33,8 +34,10 @@ export default function Projects() {
         {
             title: "Binary Clock",
             description: "A real-time binary clock in the browser",
+            // description: "This project benchmarks probabilistic data structures like HyperLogLog (HLL) and Bloom Filters against brute-force methods for membership testing and cardinality estimation",
             descriptionCard: "A minimalistic binary clock with a retro aesthetic",
             link: "https://binary-clock-ten.vercel.app/",
+            linkName: "Live",
             image: "/thumbnails/binClockT.png",
             // gradient: "from-gray-800 via-blue-800 to-gray-900",
             gradient: "from-emerald-900 via-emerald-700 to-emerald-900",
@@ -55,6 +58,7 @@ export default function Projects() {
             description: "img-cipher is a client-side web app for securely encrypting and decrypting images directly in your browser. ",
             descriptionCard: "In browser image encryption and decryption",
             link: "https://img-cipher.vercel.app/",
+            linkName: "Live",
             gradient: "from-gray-700 via-gray-500 to-gray-700",
             // gradient: "from-slate-900 to-slate-700",
             image: "/thumbnails/imgCipherT.png",
@@ -75,7 +79,7 @@ export default function Projects() {
 
     // bg-gradient-to-r from-slate-900 to-slate-700
     return (
-        <div className="min-h-screen w-screen bg-[#0f0f0f] text-white outfit-font overflow-x-hidden">
+        <div className="min-h-screen w-screen bg-[#0f0f0f] text-white outfit-font overflow-x-hidden ">
             <NavbarDemo />
 
             {/* Background image section */}
@@ -91,7 +95,7 @@ export default function Projects() {
                 }}
             >
                 {/* masking gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f0f0f]" />
+                <div className="hidden sm:block  absolute inset-0 bg-gradient-to-b from-transparent to-[#0f0f0f]" />
 
                 {/* content */}
                 <>
@@ -117,24 +121,20 @@ export default function Projects() {
                         {projects.map((project, idx) => (
                             <div
                                 key={idx}
-                                className="flex w-full max-w-7xl justify-center gap-1"
+                                className="flex flex-col lg:flex-row w-full max-w-7xl justify-center items-center lg:items-start px-4 gap-0 sm:gap-8"
                             >
                                 {/* Left card */}
-                                <div className="w-2/3 px-6">
+                                <div className="w-full lg:w-2/3">
                                     <CardContainer className="inter-var">
                                         <CardBody
-
-                                            className={`w-full sm:w-[36rem] md:w-[40rem] h-auto rounded-xl p-6 border
-                                                dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]
-                                                dark:border-white/[0.2] border-black/[0.1]
-                                                ${project.gradient.startsWith("from-") ? `bg-gradient-to-r ${project.gradient}` : ""}
-                                            `}
+                                            className={`w-full h-auto rounded-xl p-4 sm:p-6 border dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]
+          dark:border-white/[0.2] border-black/[0.1]
+          ${project.gradient.startsWith("from-") ? `bg-gradient-to-r ${project.gradient}` : ""}`}
                                         >
-
-                                            <div className="flex justify-between items-center mt-4">
+                                            <div className="flex justify-between items-center sm:mt-4 flex-wrap gap-2">
                                                 <CardItem
                                                     translateZ="0"
-                                                    className="text-xl font-bold text-neutral-600 dark:text-white"
+                                                    className="hidden sm:block text-base sm:text-lg md:text-xl font-bold text-neutral-600 dark:text-white"
                                                 >
                                                     {project.descriptionCard}
                                                 </CardItem>
@@ -143,24 +143,17 @@ export default function Projects() {
                                                     as="a"
                                                     href={project.link}
                                                     target="__blank"
-                                                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                                                    className="hidden sm:block px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs sm:text-sm font-bold"
                                                 >
-                                                    Live →
+                                                    {project.linkName} →
                                                 </CardItem>
                                             </div>
-                                            <CardItem translateZ="20" rotateZ={-2} className="w-full mt-6 relative">
-                                                {/* Image */}
+                                            <CardItem translateZ="20" rotateZ={-2} className="w-full sm:mt-6 relative aspect-[16/9]">
                                                 <img
                                                     src={project.image}
-                                                    height="1000"
-                                                    width="1000"
-                                                    className="h-75 w-full object-cover rounded-2xl group-hover/card:shadow-xl border-[1.5px] border-white/20"
+                                                    className="w-full h-full object-cover rounded-2xl group-hover/card:shadow-xl border-[1.5px] border-white/20"
                                                     alt="thumbnail"
                                                 />
-
-                                                {/* Gradient overlay #2 inset-0 pointer-events-none rounded-2xl bg-gradient-to-br from-[#6b0d33] via-pink-500 to-[#f9d793]/90" />
-
-                                                {/* Shadow gradient overlay */}
                                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                                             </CardItem>
 
@@ -169,16 +162,19 @@ export default function Projects() {
                                 </div>
 
                                 {/* Right details */}
-                                <div className="w-1/3 px-1">
+                                <div className="w-full lg:w-1/3 mt-6 lg:mt-0">
                                     <ProjectDetailsPanel
                                         title={project.title}
                                         description={project.description}
                                         features={project.features}
                                         techStack={project.techStack}
                                         gradient={project.gradient}
+                                        link={project.link}
+                                        linkName={project.linkName}
                                     />
                                 </div>
                             </div>
+
                         ))}
                     </div>
 

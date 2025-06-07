@@ -33,7 +33,7 @@ export default function About() {
                             "I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in."
                         </p>
 
-                        <div className="flex mt-6 gap-4">
+                        <div className="flex mt-6 gap-4 items-center">
                             <a href="https://x.com/siddharthaasal" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
                                 <span className="sr-only">Twitter</span>
                                 <XIcon />
@@ -44,15 +44,24 @@ export default function About() {
                             </a>
                             <a href="https://www.linkedin.com/in/siddharthaasal/" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
                                 <span className="sr-only">LinkedIn</span>
-                                <LinkedInIcon />
+                                <LinkedInIcon sx={{ color: '#0a66c2' }} />
+                            </a>
+                            <a href="https://leetcode.com/u/siddharthaasal/" target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-white transition-colors">
+                                <span className="sr-only">LeetCode</span>
+                                <img
+                                    src={"https://cdn.simpleicons.org/leetcode"}
+                                    alt="leetcode-icon"
+                                    className="w-4 sm:w-5"
+                                />
                             </a>
                         </div>
                     </div>
 
                     {/* Right: Card Stack */}
-                    <div>                        <div className="w-full max-w-md flex items-center justify-center">
-                        <CardStack items={CARDS} />
-                    </div>
+                    <div>
+                        <div className="w-full max-w-md flex items-center justify-center pb-24 sm:pb-0">
+                            <CardStack items={CARDS} />
+                        </div>
                     </div>
                 </div>
             </div>
