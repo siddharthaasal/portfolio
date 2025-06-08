@@ -49,7 +49,7 @@ export function Connect() {
                                 <div className="mx-auto mt-4 h-1 w-20 sm:w-24 rounded-full bg-[#2a2a2a]" />
 
                                 {/* Social Icons */}
-                                <div className="flex flex-wrap justify-center gap-4 my-6">
+                                <div className="flex flex-wrap justify-center gap-4 my-6 items-center">
                                     <a
                                         href="https://www.linkedin.com/in/siddharthaasal/"
                                         target="_blank"
