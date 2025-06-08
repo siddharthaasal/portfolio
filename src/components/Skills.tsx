@@ -76,6 +76,7 @@ export default function Skills() {
         },
         []
     )
+
     return (
         <>
             <div className="relative w-screen h-screen bg-[#0a0a0a] text-white overflow-hidden">
@@ -129,7 +130,7 @@ export default function Skills() {
                     </h2>
 
                     {/* Skills Grid */}
-                    <div className="mt-10 outfit-font">
+                    <div className="mt-10 outfit-font animate-fade-in">
                         {skillsData.map((section, index) => (
                             <div key={index} className="mb-4">
                                 <ul className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">

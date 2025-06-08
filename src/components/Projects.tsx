@@ -1,7 +1,8 @@
 import NavbarDemo from "./Navbar";
-import projectSvg from "../assets/projectSvg.png"; // still useful for URL
+import projectSvg2 from "../assets/projectSvg2.png"; // still useful for URL
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import ProjectDetailsPanel from "./ProjectDetailsPanel";
+
 
 export default function Projects() {
     const projects = [
@@ -86,7 +87,7 @@ export default function Projects() {
             <div
                 className="w-4/5  mx-auto mt-24 h-[60vh] bg-cover bg-center relative"
                 style={{
-                    backgroundImage: `url(${projectSvg})`,
+                    backgroundImage: `url(${projectSvg2})`,
                     backgroundColor: '#0f0f0f',
                     backgroundBlendMode: 'lighten',
                     backgroundSize: 'cover',

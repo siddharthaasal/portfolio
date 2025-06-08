@@ -1,72 +1,37 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @tailwind utilities;
-
 @custom-variant dark (&:is(.dark *));
 
-/* Regular */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('/fonts/night-serif-ttf/NyghtSerif-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Bold */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('../public/fonts/night-serif-ttf/NyghtSerif-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Medium */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('/fonts/night-serif-ttf/NyghtSerif-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Light */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('/fonts/night-serif-ttf/NyghtSerif-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Italics (example: Regular Italic) */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('/fonts/night-serif-ttf/NyghtSerif-RegularItalic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Bold Italic */
-@font-face {
-  font-family: 'Nyght Serif';
-  src: url('/fonts/night-serif-ttf/NyghtSerif-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@theme {
-  --font-nyght: Nygth Serif, serif;
-}
-
-/* Or define a custom utility class */
 @layer utilities {
-  .font-nyght {
-    font-family: var(--font-nyght);
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 5%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-in-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out both;
   }
 }
 

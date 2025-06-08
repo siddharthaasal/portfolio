@@ -1,31 +1,81 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
     { label: "Home", href: "/" },
+    { label: "Skills", href: "/skills" },
     { label: "About", href: "/about" },
     { label: "Projects", href: "/projects" },
-    { label: "Skills", href: "/skills" },
 ];
 
 export default function NavbarDemo() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const location = useLocation(); // 🧭 get current path
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [activeSection, setActiveSection] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (location.pathname !== "/") {
+            setActiveSection(null); // reset if not on homepage
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id); // home, skills, about...
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        const sectionIds = ["home", "skills", "about", "projects"];
+        const sections = sectionIds
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+
+        sections.forEach((section) => observer.observe(section!));
+
+        return () => {
+            sections.forEach((section) => observer.unobserve(section!));
+        };
+    }, [location.pathname]);
+
+    function handleNavClick(href: string) {
+        if (location.pathname === "/") {
+            const id = href === "/" ? "home" : href.replace("/", "");
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+                setActiveSection(id);
+            }
+        } else {
+            navigate(href);
+        }
+        setSidebarOpen(false);
+    }
 
     return (
         <>
             {/* Desktop Navbar */}
-            <div className="fixed top-6 left-0 w-full flex items-center justify-center z-50">
-                <ul className="outfit-font hidden md:flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] backdrop-blur-md transition-all duration-300">
+            <div className="fixed top-6 left-0 w-full flex items-center justify-center z-50 opacity-90">
+                <ul className="outfit-font hidden md:flex items-center justify-center gap-2 px-4 py-2 rounded-full border bg-[#1B1B1B] shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] transition-all duration-300">
                     {navItems.map((item, idx) => {
-                        const isActive = location.pathname === item.href;
+                        const id = item.href === "/" ? "home" : item.href.replace("/", "");
+                        const isActive =
+                            location.pathname === "/"
+                                ? activeSection === id
+                                : location.pathname === item.href;
+
                         return (
                             <li key={idx} className="relative group">
-                                <Link
-                                    to={item.href}
+                                <button
+                                    onClick={() => handleNavClick(item.href)}
                                     className={cn(
                                         "inline-block px-4 py-1.5 text-sm font-light transition-all duration-200 rounded-full",
                                         isActive
@@ -34,7 +84,7 @@ export default function NavbarDemo() {
                                     )}
                                 >
                                     {item.label}
-                                </Link>
+                                </button>
                             </li>
                         );
                     })}
@@ -50,11 +100,11 @@ export default function NavbarDemo() {
                 </ul>
             </div>
 
-            {/* Hamburger (Mobile Only) */}
+            {/* Mobile Hamburger */}
             <div className="fixed top-6 left-4 z-50 md:hidden">
                 <button
                     onClick={() => setSidebarOpen(true)}
-                    className="text-white p-2 rounded-md cursor-pointer transition"
+                    className="text-white p-2 rounded-md transition"
                 >
                     <svg
                         className="w-6 h-6"
@@ -77,7 +127,7 @@ export default function NavbarDemo() {
                 onClick={() => setSidebarOpen(false)}
             />
 
-            {/* Sidebar Panel */}
+            {/* Mobile Sidebar */}
             <aside
                 className={cn(
                     "fixed top-0 left-0 h-full w-64 bg-neutral-900 z-50 p-6 transform transition-transform duration-300 shadow-2xl border-r border-white/10",
@@ -94,21 +144,25 @@ export default function NavbarDemo() {
                 </div>
                 <nav className="mt-8 space-y-4">
                     {navItems.map((item, idx) => {
-                        const isActive = location.pathname === item.href;
+                        const id = item.href === "/" ? "home" : item.href.replace("/", "");
+                        const isActive =
+                            location.pathname === "/"
+                                ? activeSection === id
+                                : location.pathname === item.href;
+
                         return (
-                            <Link
+                            <button
                                 key={idx}
-                                to={item.href}
-                                onClick={() => setSidebarOpen(false)}
+                                onClick={() => handleNavClick(item.href)}
                                 className={cn(
-                                    "block px-3 py-2 rounded-md transition-all",
+                                    "block px-3 py-2 rounded-md transition-all w-full text-left",
                                     isActive
                                         ? "text-white bg-white/10"
                                         : "text-white/80 hover:bg-white/10 hover:text-white"
                                 )}
                             >
                                 {item.label}
-                            </Link>
+                            </button>
                         );
                     })}
                     <a
