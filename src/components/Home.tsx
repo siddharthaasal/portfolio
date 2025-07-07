@@ -5,10 +5,15 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import { useState, useEffect } from "react";
+import { lazy, Suspense } from "react";
 
-import Skills from "./Skills";
-import Projects from "./Projects";
-import About from "./About";
+// import Skills from "./Skills";
+// import Projects from "./Projects";
+// import About from "./About";
+
+const Skills = lazy(() => import('./Skills'))
+const Projects = lazy(() => import('./Projects'))
+const About = lazy(() => import('./About'))
 
 export function Home() {
     const [copied, setCopied] = useState(false);
@@ -118,13 +123,19 @@ export function Home() {
                 </div>
             </section>
             <section id="skills">
-                <Skills />
+                <Suspense fallback={<h1>Still Loading…</h1>}>
+                    <Skills />
+                </Suspense>
             </section>
             <section id="about">
-                <About />
+                <Suspense fallback={<h1>Still Loading…</h1>}>
+                    <About />
+                </Suspense>
             </section>
             <section id="projects">
-                <Projects />
+                <Suspense fallback={<h1>Still Loading…</h1>}>
+                    <Projects />
+                </Suspense>
             </section>
         </main>
     );
